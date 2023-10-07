@@ -14,6 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 
 local opts = {}
 
-require("lazy").setup({ { import = "jetr.plugins"} , { import = "jetr.plugins.lsp" } }, opts)
+require("lazy").setup({ { import = "jetr.plugins" }, { import = "jetr.plugins.lsp" } }, opts)
 
 vim.cmd.colorscheme("catppuccin")
