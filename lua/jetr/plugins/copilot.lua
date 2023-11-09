@@ -4,6 +4,8 @@ return {
   build = "Copilot auth",
   event = "InsertEnter",
   config = function()
+    vim.keymap.set('i', '<tab>', '<nop>')
+
     require('copilot').setup({
       panel = {
         enabled = false,
