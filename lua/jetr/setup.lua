@@ -26,3 +26,8 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
+vim.filetype.add({
+  extension = {
+    templ = "templ",
+  },
+})

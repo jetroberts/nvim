@@ -1,10 +1,10 @@
 return {
-    "williamboman/mason.nvim",
-    dependencies = {
-        "williamboman/mason-lspconfig.nvim",
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-      },
-    config = function()
+  "williamboman/mason.nvim",
+  dependencies = {
+    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+  },
+  config = function()
     -- import mason
     local mason = require("mason")
 
@@ -34,6 +34,7 @@ return {
         "lua_ls",
         "rust_analyzer",
         "gopls",
+        "templ",
       },
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed
@@ -42,7 +43,7 @@ return {
     mason_tool_installer.setup({
       ensure_installed = {
         "prettier", -- prettier formatter
-        "stylua", -- lua formatter
+        "stylua",   -- lua formatter
         "eslint_d", -- js linter
       },
     })

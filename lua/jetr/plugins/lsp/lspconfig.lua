@@ -84,6 +84,7 @@ return {
     lspconfig["html"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      filetypes = { "gohtml", "gohtmltmpl", "html", "markdown", "mdx", "templ" },
     })
 
     -- configure typescript server with plugin
@@ -100,6 +101,12 @@ return {
 
     -- configure tailwindcss server
     lspconfig["tailwindcss"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "gohtml", "gohtmltmpl", "html", "markdown", "mdx", "css", "less", "postcss", "sass", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", "templ" },
+    })
+
+    lspconfig["templ"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
