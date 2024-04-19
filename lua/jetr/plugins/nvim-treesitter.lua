@@ -6,7 +6,7 @@ return { {
 
     configs.setup({
       ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "html", "typescript", "go", "rust",
-        "dockerfile", "css", "yaml", "templ" },
+        "dockerfile", "css", "yaml", "templ", "ruby" },
       sync_install = false,
       highlight = { enable = true },
       indent = { enable = true },

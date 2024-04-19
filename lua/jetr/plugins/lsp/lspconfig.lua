@@ -16,6 +16,13 @@ return {
 
     local opts = { noremap = true, silent = true }
     local on_attach = function(client, bufnr)
+      if client.name == "solargraph" then
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+
+        vim.b.format_disabled = true
+      end
+
       opts.buffer = bufnr
 
       -- set keybinds
@@ -63,7 +70,6 @@ return {
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
     -- Change the Diagnostic symbols in the sign column (gutter)
-    -- (not in youtube nvim video)
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
@@ -130,6 +136,11 @@ return {
           },
         },
       },
+    })
+
+    lspconfig["solargraph"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
     })
   end,
 }
