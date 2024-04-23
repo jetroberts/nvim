@@ -21,6 +21,7 @@ vim.keymap.set('n', '<leader>wh', '<C-w>h')
 vim.keymap.set('n', '<leader>wl', '<C-w>l')
 
 vim.keymap.set('n', '<leader>ee', ':NvimTreeToggle<CR>')
+vim.keymap.set('n', '<leader>er', ':NvimTreeFindFile<CR>')
 
 vim.keymap.set('n', '<leader>xx', function() require("trouble").toggle() end)
 vim.keymap.set('n', '<leader>xw', function() require("trouble").toggle('workspace_diagnostics') end)
