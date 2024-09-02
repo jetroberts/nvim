@@ -95,7 +95,7 @@ return {
     lspconfig["html"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      filetypes = { "gohtml", "gohtmltmpl", "html", "markdown", "mdx", "templ" },
+      filetypes = { "gohtml", "gohtmltmpl", "html", "markdown", "mdx", "templ", "typescriptreact", "javascriptreact" },
     })
 
     -- configure typescript server with plugin
