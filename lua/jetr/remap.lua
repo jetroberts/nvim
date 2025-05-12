@@ -1,7 +1,12 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.keymap.set("", "<Space>", "<leader>", { noremap = true })
 
 vim.keymap.set("i", "jk", "<Esc>")
+vim.keymap.set("i", "jK", "<Esc>")
+vim.keymap.set("i", "Jk", "<Esc>")
+vim.keymap.set("i", "JK", "<Esc>")
+
 
 vim.keymap.set('n', '<leader>wq', function()
   vim.cmd(":close")
@@ -28,3 +33,5 @@ vim.keymap.set('n', '<leader>xw', function() require("trouble").toggle('workspac
 vim.keymap.set('n', '<leader>xd', function() require("trouble").toggle('document_diagnostics') end)
 vim.keymap.set('n', '<leader>xq', function() require("trouble").toggle('quickfix') end)
 vim.keymap.set('n', '<leader>xl', function() require("trouble").toggle('loclist') end)
+
+vim.keymap.set('n', '<leader>cc', function() require("codecompanion").toggle() end)

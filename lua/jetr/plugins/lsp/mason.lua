@@ -27,7 +27,7 @@ return {
     mason_lspconfig.setup({
       -- list of servers for mason to install
       ensure_installed = {
-        "tsserver",
+        "ts_ls",
         "html",
         "cssls",
         "tailwindcss",
@@ -35,7 +35,8 @@ return {
         "rust_analyzer",
         "gopls",
         "templ",
-        "solargraph",
+        "ruby_lsp",
+        "clangd",
       },
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed
@@ -46,6 +47,7 @@ return {
         "prettier", -- prettier formatter
         "stylua",   -- lua formatter
         "eslint_d", -- js linter
+        "codelldb",
       },
     })
   end,

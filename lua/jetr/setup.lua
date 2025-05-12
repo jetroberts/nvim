@@ -24,6 +24,8 @@ vim.opt.scrolloff = 4
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
+vim.opt.splitright = true
+
 vim.opt.updatetime = 50
 
 vim.lsp.set_log_level("off")
@@ -33,3 +35,5 @@ vim.filetype.add({
     templ = "templ",
   },
 })
+
+vim.diagnostic.config({ virtual_text = true })

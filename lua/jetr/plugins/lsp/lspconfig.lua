@@ -16,11 +16,8 @@ return {
 
     local opts = { noremap = true, silent = true }
     local on_attach = function(client, bufnr)
-      if client.name == "solargraph" then
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-
-        vim.b.format_disabled = true
+      if client.name == "html" then
+        client.server_capabilities.renameProvider = false
       end
 
       opts.buffer = bufnr
@@ -81,51 +78,68 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    lspconfig["gopls"].setup({
+    vim.lsp.config("gopls", {
       capabilities = capabilities,
-      on_attach = on_attach,
     })
 
-    lspconfig["rust_analyzer"].setup({
+    vim.lsp.config("rust_analyzer", {
       capabilities = capabilities,
-      on_attach = on_attach,
     })
 
-    -- configure html server
-    lspconfig["html"].setup({
+    vim.lsp.config("html", {
       capabilities = capabilities,
-      on_attach = on_attach,
+      on_attach = function(client)
+        on_attach(client)
+        client.server_capabilities.document_formatting = false
+      end,
       filetypes = { "gohtml", "gohtmltmpl", "html", "markdown", "mdx", "templ", "typescriptreact", "javascriptreact" },
     })
 
+    vim.lsp.config("clangd", {
+      capabilities = capabilities,
+      filetypes = { "c", "cpp", "cc", "h", "hpp", "hxx", "arduino" },
+    })
+
     -- configure typescript server with plugin
-    lspconfig["tsserver"].setup({
+    vim.lsp.config("ts_ls", {
+      root_dir = function(bufnr, on_dir)
+        local root_files = {
+          "package.json",
+          ".git",
+          "tsconfig.json",
+          "jsconfig.json",
+        }
+
+        -- get the full path of the buf file
+        local filename = vim.api.nvim_buf_get_name(bufnr)
+        -- try to find the nearest ancestor directory containing one of the markers
+        local root = require("lspconfig.util").root_pattern(root_files)(filename)
+        if root then
+          on_dir(root)
+        end
+        -- if you’d rather always fall back to cwd when no marker is found, you could do:
+        -- else
+        --   on_dir(vim.fn.getcwd())
+        -- end
+      end,
+    })
+
+    vim.lsp.config("cssls", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
-    -- configure css server
-    lspconfig["cssls"].setup({
+    vim.lsp.config("tailwindcss", {
       capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    -- configure tailwindcss server
-    lspconfig["tailwindcss"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
       filetypes = { "gohtml", "gohtmltmpl", "html", "markdown", "mdx", "css", "less", "postcss", "sass", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", "templ" },
     })
 
-    lspconfig["templ"].setup({
+    vim.lsp.config("templ", {
       capabilities = capabilities,
-      on_attach = on_attach,
     })
 
-    -- configure lua server (with special settings)
-    lspconfig["lua_ls"].setup({
+    vim.lsp.config("lua_ls", {
       capabilities = capabilities,
-      on_attach = on_attach,
       settings = { -- custom settings for lua
         Lua = {
           -- make the language server recognize "vim" global
@@ -143,7 +157,8 @@ return {
       },
     })
 
-    lspconfig["solargraph"].setup({
+
+    vim.lsp.config("ruby_lsp", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
