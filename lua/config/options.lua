@@ -1,4 +1,8 @@
 vim.opt.nu = true
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 vim.opt.relativenumber = true
 
 vim.opt.tabstop = 2
@@ -31,9 +35,15 @@ vim.opt.updatetime = 50
 vim.lsp.set_log_level("off")
 
 vim.filetype.add({
-  extension = {
-    templ = "templ",
-  },
+	extension = {
+		templ = "templ",
+	},
 })
 
 vim.diagnostic.config({ virtual_text = true })
+
+vim.o.cmdheight = 0
+
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+vim.opt.foldenable = false
